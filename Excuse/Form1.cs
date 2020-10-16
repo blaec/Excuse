@@ -11,12 +11,16 @@ using System.Windows.Forms;
 
 namespace Excuse
 {
+
     public partial class Form1 : Form
     {
         private Excuse currentExcuse = new Excuse();
         private string selectedFolder = "";
         private bool formChanged = false;
         Random random = new Random();
+
+        private readonly static string FILE_FILTER = "Excuse files (*.excuse)|*.excuse|All files (*.*)|*.*";
+        private readonly static string FILE_EXTENTION = ".excuse";
 
         public Form1()
         {
@@ -69,8 +73,8 @@ namespace Excuse
             else
             {
                 saveFileDialog1.InitialDirectory = selectedFolder;
-                saveFileDialog1.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
-                saveFileDialog1.FileName = description.Text + ".txt";
+                saveFileDialog1.Filter = FILE_FILTER;
+                saveFileDialog1.FileName = description.Text + FILE_EXTENTION;
                 DialogResult result = saveFileDialog1.ShowDialog();
                 if (result == DialogResult.OK)
                 {
@@ -86,8 +90,8 @@ namespace Excuse
             if (CheckChanged())
             {
                 openFileDialog1.InitialDirectory = selectedFolder;
-                openFileDialog1.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
-                openFileDialog1.FileName = description.Text + ".txt";
+                openFileDialog1.Filter = FILE_FILTER;
+                openFileDialog1.FileName = description.Text + FILE_EXTENTION;
                 DialogResult result = openFileDialog1.ShowDialog();
                 if (result == DialogResult.OK)
                 {
